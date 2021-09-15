@@ -1,3 +1,4 @@
+static/admin
 pr_tecnica/config.py
 apps/*/migrations/*
 # Byte-compiled / optimized / DLL files

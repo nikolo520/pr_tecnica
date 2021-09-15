@@ -21,4 +21,6 @@ urlpatterns = [
     path('', LoginView.as_view(template_name = 'index.html'),name="login"),
     path('admin/', admin.site.urls),
     path('usuario/', include('apps.usuario.urls')),
+    path('cliente/', include('apps.cliente.urls')),
+    path('venta/', include('apps.venta.urls')),
 ]
