@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+
+{% block title %}  Usuarios {% endblock %}
+{% block header %}
+    <br><h4>Usuarios</h4><br>
+{% endblock %}
+{% block content %}
+    <table class="table table-bordered">
+        <thead>
+            <td>Usuario</td>
+            <td>Nombre Completo</td>
+            <td>N° Empleado</td>
+            <td>Cargo</td>
+            <td>Activo</td>
+        </thead>
+        <tbody>
+            {% if usuarios%}
+                {% for usuario in usuarios %}
+                <tr>
+                    <td><a href="http://localhost:8000/usuario/detail/{{ usuario.id }}"> {{ usuario.usuario }}</a></td>
+                    <td>{{ usuario.nombre_completo }}</td>
+                    <td>{{ usuario.numero_empleado }}</td>
+                    <td>{{ usuario.cargo }}</td>
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" checked="{{ usuario.activo }}" id="flexCheckDefault" disabled>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <h1>No hay usuarios registrados</h1>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+   
