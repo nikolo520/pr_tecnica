@@ -53,6 +53,27 @@
         {% else %}
           <div class="col-md-6 border container p-4 mb-3">
             <h2>Ventas</h2>
+            {% if rel_objs  %}
+              {% for venta in rel_objs %}
+              <table class="table table-bordered">
+                <thead>
+                    <td>Cliente</td>
+                    <td>Servicio</td>
+                    <td>Fecha</td>
+                    <td>Valor</td>
+                </thead>
+                <tbody>
+                    <td>{{ venta.cliente }}</td>
+                    <td>{{ venta.servicio }}</td>
+                    <td>{{ venta.fecha }}</td>
+                    <td>{{ venta.valor }}</td>
+                </tbody>
+              </table>
+              {% endfor %}
+
+            {% else %}
+              <h4>NO hay registro de ventas para el usuario.</h4>
+            {% endif %}
         </div>
         {% endif %}
         

@@ -8,11 +8,11 @@ cargos_list = [
 ]
 
 zonas_list = [
-    ('1','Zona 1'),
-    ('2','Zona 2'),
-    ('3','Zona 3'),
-    ('4','Zona 4'),
-    ('5','Zona 5')
+    ('Zona 1','Zona 1'),
+    ('Zona 2','Zona 2'),
+    ('Zona 3','Zona 3'),
+    ('Zona 4','Zona 4'),
+    ('Zona 5','Zona 5')
 ]
 
 sexos_list = [
