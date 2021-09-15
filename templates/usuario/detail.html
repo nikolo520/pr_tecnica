@@ -1,76 +1,62 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
 {% block title %}  Detail {% endblock %}
 {% block header %}
-    <h4>Usuario {{ usuario.nombres }}</h4>
+
 {% endblock %}
 {% block content %}
     <div class="row">
-        <div class="col-6">
-            <h2>Fomulario</h2>
-            <form>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">Usuario</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Usuario" value="{{ usuario.usuario }}" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="inputPassword4">Nombre</label>
-                    <input type="text" class="form-control" id="inputPassword4" placeholder="Nombres" value="{{ usuario.nombres }}" readonly>
-                  </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="inputEmail4">Primer Apellido</label>
-                      <input type="text" class="form-control" id="inputEmail4" placeholder="Email" value="{{ usuario.apellido1 }}" readonly>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="inputPassword4">Segundo Apellido</label>
-                      <input type="text" class="form-control" id="inputPassword4" placeholder="Password" value="{{ usuario.apellido2 }}" readonly>
-                    </div>
-                  </div>
-                <div class="form-group">
-                  <label for="inputAddress">Address</label>
-                  <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" readonly>
-                </div>
-                <div class="form-group">
-                  <label for="inputAddress2">Address 2</label>
-                  <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" readonly>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity" readonly>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="inputState">State</label>
-                    <select id="inputState" class="form-control">
-                      <option selected>Choose...</option>
-                      <option>...</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-2">
-                    <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                      Check me out
-                    </label>
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
-              </form>
+      <div class="col-md-6 border container p-4 mb-3">
+        <h4><small class="text-muted">Perfil de Usuario</small></h4>
+        <h2>{{ usuario.nombres }} {{ usuario.apellido1 }} {{ usuario.apellido2 }} </br></h2>
+        <br></br>
+        <div class="row">
+          <div class="form-group col-md-3">
+            <img src="{% static 'images/M1.jpg' %}" class="rounded mx-auto d-block profile_photo" alt="Perfil">
+          </div>
+          <div class="form-group col-md-9">
+            {{ usuario.usuario }}<br>
+            {{ usuario.numero_empleado }}<br>
+            {{ usuario.cargo }}<br>
+            {{ usuario.zona }}<br>
+            {{ usuario.municipio }},{{ usuario.departamento }}</br>
+          </div>
         </div>
-        <div class="col-6">
+        <br>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label for="telefono"><strong>Teléfono:</strong></label>
+            <input type="text" class="form-control-plaintext" id="telefono" placeholder="Teléfono" value="{{ usuario.telefono }}" readonly>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="correo"><strong>Correo Electrónico</strong></label>
+            <input type="text" class="form-control-plaintext" id="correo" placeholder="Correo Electrónico" value="{{ usuario.correo }}" readonly>
+          </div>
+        </div>
+        </br>
+        <div class="row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4"><strong>Fecha de Ingreso</strong></label>
+              <input type="text" class="form-control-plaintext" id="inputEmail4" placeholder="Email" value="{{ usuario.fecha_ingreso }}" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4"><strong>Jefe</strong></label>
+              <input type="text" class="form-control-plaintext" id="inputPassword4" placeholder="Password" value="{{ usuario.jefe }}" readonly>
+            </div>
+          </div>
+        </div>
+
+        {% if flag %}
+          <div class="col-md-6 border container p-4 mb-3">
             <h2>Subalternos</h2>
+          </div>
+        {% else %}
+          <div class="col-md-6 border container p-4 mb-3">
+            <h2>Ventas</h2>
         </div>
+        {% endif %}
+        
     </div>
 {% endblock %}
-{% block footer %}
-    <h4>Usuario base</h4>
-{% endblock %}
+
    
