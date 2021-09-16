@@ -13,58 +13,58 @@
     <body class="bg-light">
         {% block navbar %}
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">S.U. Logistics</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                        <ul class="navbar-nav">
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLinkUsuarios" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Usuarios
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLinkUsuarios">
-                              <li><a class="dropdown-item" href="{% url 'create' %}">Crear</a></li>
-                              <li><a class="dropdown-item" href="{% url 'index' %}">Consultar</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLinkClientes" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Clientes
-                              </a>
-                              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLinkClientes">
-                                <li><a class="dropdown-item" href="">Crear</a></li>
-                                <li><a class="dropdown-item" href="">Consultar</a></li>
-                              </ul>
-                            </li>
-                          </ul>
-                          <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLinkVentas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Ventas
-                              </a>
-                              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLinkVentas">
-                                <li><a class="dropdown-item" href="">Crear</a></li>
-                                <li><a class="dropdown-item" href="">Consultar</a></li>
-                              </ul>
-                            </li>
-                          </ul>
-                          <spanc class="mr-auto ml-auto"></span>
-                          <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {{usuario.usuario}}
-                              </a>
-                              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
-                                <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
-                              </ul>
-                            </li>
-                          </ul>
-                    </div>
+              <a class="navbar-brand" href="#">S.U. Logistics</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLinkUsuarios" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Usuarios
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLinkUsuarios">
+                      <li><a class="dropdown-item" href="{% url 'create' %}">Crear</a></li>
+                      <li><a class="dropdown-item" href="{% url 'index' %}">Consultar</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLinkClientes" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Clientes
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLinkClientes">
+                        <li><a class="dropdown-item" href="">Crear</a></li>
+                        <li><a class="dropdown-item" href="">Consultar</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLinkVentas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Ventas
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLinkVentas">
+                        <li><a class="dropdown-item" href="">Crear</a></li>
+                        <li><a class="dropdown-item" href="">Consultar</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav navbar-right" >
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Perfil
+                        
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        <li><a class="dropdown-item">{% if user.is_authenticated %} {{ user.username }}{% endif %}</a></li>
+                        <div class="dropdown-divider"></div>
+                        <li><a class="dropdown-item" href="#">Ver Perfil</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                      </ul>
+                    </li>
+                  </ul>
                 </div>
             </nav>
         {% endblock %}
