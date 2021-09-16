@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load usuario_extras %}
 {% block title %}  Detail {% endblock %}
 {% block header %}
 
@@ -8,40 +9,42 @@
     <div class="row">
       <div class="col-md-6 border container p-4 mb-3">
         <h4><small class="text-muted">Perfil de Usuario</small></h4>
-        <h2>{{ usuario.nombres }} {{ usuario.apellido1 }} {{ usuario.apellido2 }} </br></h2>
-        <br></br>
+        <h2>{{ usuario }}</h2>
+        <p>{{ usuario.numero_empleado | is_none }}</p>
         <div class="row">
           <div class="form-group col-md-3">
             <img src="{% static 'images/M1.jpg' %}" class="rounded mx-auto d-block profile_photo" alt="Perfil">
           </div>
           <div class="form-group col-md-9">
-            {{ usuario.usuario }}<br>
-            {{ usuario.numero_empleado }}<br>
-            {{ usuario.cargo }}<br>
-            {{ usuario.zona }}<br>
-            {{ usuario.municipio }},{{ usuario.departamento }}</br>
+            <ul class="list-group">
+              <li class="list-group-item">{{ usuario.cargo | is_none }}</li>
+              <li class="list-group-item">{{ usuario.zona | is_none }}</li>
+              <li class="list-group-item">{{ usuario.municipio }},{{ usuario.departamento | is_none }}</li>
+              <li class="list-group-item">$ {{ usuario.id | total_ventas }}</li>
+            </ul>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="form-group col-md-6">
             <label for="telefono"><strong>Teléfono:</strong></label>
-            <input type="text" class="form-control-plaintext" id="telefono" placeholder="Teléfono" value="{{ usuario.telefono }}" readonly>
+            <input type="text" class="form-control-plaintext" id="telefono" value="{{ usuario.telefono | is_none }}" readonly>
           </div>
           <div class="form-group col-md-6">
-            <label for="correo"><strong>Correo Electrónico</strong></label>
-            <input type="text" class="form-control-plaintext" id="correo" placeholder="Correo Electrónico" value="{{ usuario.correo }}" readonly>
+            <label for="correo"><strong>Correo Electrónico:</strong></label>
+            <input type="text" class="form-control-plaintext" id="correo" value="{{ usuario.correo | is_none }}" readonly>
           </div>
         </div>
-        </br>
         <div class="row">
             <div class="form-group col-md-6">
-              <label for="inputEmail4"><strong>Fecha de Ingreso</strong></label>
-              <input type="text" class="form-control-plaintext" id="inputEmail4" placeholder="Email" value="{{ usuario.fecha_ingreso }}" readonly>
+              <label for="ingreso"><strong>Fecha de Ingreso:</strong></label>
+              <input type="text" class="form-control-plaintext" id="ingreso" value="{{ usuario.fecha_ingreso | is_none }}" readonly>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputPassword4"><strong>Jefe</strong></label>
-              <input type="text" class="form-control-plaintext" id="inputPassword4" placeholder="Password" value="{{ usuario.jefe }}" readonly>
+              <label for="jefe"><strong>Jefe:</strong></label>
+              {% if usuario.jefe %}
+                <a class="form-control-plaintext" href="{% url 'detail' usuario.jefe.id %}">{{ usuario.jefe | is_none }}</a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -49,13 +52,34 @@
         {% if flag %}
           <div class="col-md-6 border container p-4 mb-3">
             <h2>Subalternos</h2>
+            {% if rel_objs  %}
+              <table class="table table-bordered mt-2">
+                <thead>
+                    <td>Usuario</td>
+                    <td>Zona</td>
+                    <td>Municipio</td>
+                    <td>Total Ventas</td>
+                </thead>
+                <tbody>
+              {% for sub in rel_objs %}
+                  <tr>
+                    <td>{{ sub }}</td>
+                    <td>{{ sub.zona }}</td>
+                    <td>{{ sub.municipio }}</td>
+                    <td>$ {{ sub.id | total_ventas }}</td>
+                  </tr>
+              {% endfor %}
+              </tbody>
+              </table>
+            {% else %}
+              <h4>Este usuario no tiene subalterno.</h4>
+            {% endif %}
           </div>
         {% else %}
           <div class="col-md-6 border container p-4 mb-3">
             <h2>Ventas</h2>
             {% if rel_objs  %}
-              {% for venta in rel_objs %}
-              <table class="table table-bordered">
+              <table class="table table-bordered mt-2">
                 <thead>
                     <td>Cliente</td>
                     <td>Servicio</td>
@@ -63,14 +87,16 @@
                     <td>Valor</td>
                 </thead>
                 <tbody>
+              {% for venta in rel_objs %}
+                  <tr>
                     <td>{{ venta.cliente }}</td>
                     <td>{{ venta.servicio }}</td>
                     <td>{{ venta.fecha }}</td>
                     <td>{{ venta.valor }}</td>
-                </tbody>
-              </table>
+                  </tr>
               {% endfor %}
-
+              </tbody>
+              </table>
             {% else %}
               <h4>NO hay registro de ventas para el usuario.</h4>
             {% endif %}
