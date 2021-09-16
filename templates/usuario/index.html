@@ -5,7 +5,8 @@
     <br><h4>Usuarios</h4><br>
 {% endblock %}
 {% block content %}
-    <table class="table table-bordered">
+    <h1 class="display-6 mt-4">Lista de Usuarios en el sistema</h1>
+    <table class="table table-bordered mt-4">
         <thead>
             <td>Usuario</td>
             <td>Nombre Completo</td>
@@ -17,7 +18,7 @@
             {% if usuarios%}
                 {% for usuario in usuarios %}
                 <tr>
-                    <td><a href="http://localhost:8000/usuario/detail/{{ usuario.id }}"> {{ usuario.usuario }}</a></td>
+                    <td><a href="{% url 'detail' usuario.id %}"> {{ usuario.usuario }}</a></td>
                     <td>{{ usuario.nombre_completo }}</td>
                     <td>{{ usuario.numero_empleado }}</td>
                     <td>{{ usuario.cargo }}</td>
