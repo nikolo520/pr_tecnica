@@ -1,11 +1,11 @@
 from django import forms
 from django.forms import widgets
 
-from apps.usuario.models import Usuario
+from apps.usuario.models import User
 
 class UsuarioForm(forms.ModelForm):
     class Meta:
-        modal = Usuario
+        modal = User
 
         fields = [
             'username',
