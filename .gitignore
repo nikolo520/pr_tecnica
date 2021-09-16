@@ -1,6 +1,7 @@
 static/admin
 pr_tecnica/config.py
 apps/*/migrations/*
+uploads
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
