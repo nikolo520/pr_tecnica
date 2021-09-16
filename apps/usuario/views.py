@@ -21,7 +21,7 @@ def index(request):
             'id' : usuario.id,
             'usuario' : usuario.username,
             'nombre_completo' : usuario,
-            'numero_empleado': usuario.numero_empleado,
+            'zona': usuario.zona,
             'cargo': usuario.cargo,
             'activo' : 'checked' if usuario.activo else ''
 
@@ -37,7 +37,7 @@ def detail(request,id_usuario):
         rel_objs = Venta.objects.filter(vendedor=obj)
         flag = False
     else:
-        rel_objs = Usuario.objects.filter(jefe=obj)
+        rel_objs = User.objects.filter(jefe=obj)
         flag = True
     print(rel_objs)
     contexto = {'usuario':obj,'rel_objs':rel_objs,'flag':flag}
