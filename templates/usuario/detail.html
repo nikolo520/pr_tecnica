@@ -63,7 +63,7 @@
                 <tbody>
               {% for sub in rel_objs %}
                   <tr>
-                    <td>{{ sub }}</td>
+                    <td><a href="{% url 'detail' sub.id %}">{{ sub }}</a></td>
                     <td>{{ sub.zona }}</td>
                     <td>{{ sub.municipio }}</td>
                     <td>$ {{ sub.id | total_ventas }}</td>
@@ -89,10 +89,10 @@
                 <tbody>
               {% for venta in rel_objs %}
                   <tr>
-                    <td>{{ venta.cliente }}</td>
+                    <td>{{ venta.cliente.nombres }}</td>
                     <td>{{ venta.servicio }}</td>
                     <td>{{ venta.fecha }}</td>
-                    <td>{{ venta.valor }}</td>
+                    <td>$ {{ venta.valor }}</td>
                   </tr>
               {% endfor %}
               </tbody>

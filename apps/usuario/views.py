@@ -33,13 +33,12 @@ def index(request):
 @login_required
 def detail(request,id_usuario):
     obj = User.objects.get(id=id_usuario)
-    if obj.cargo == 'Ejecutivo_Comercial' or None:
+    if obj.cargo == 'Ejecutivo Comercial' or None:
         rel_objs = Venta.objects.filter(vendedor=obj)
         flag = False
     else:
         rel_objs = User.objects.filter(jefe=obj)
         flag = True
-    print(rel_objs)
     contexto = {'usuario':obj,'rel_objs':rel_objs,'flag':flag}
     return render(request,'usuario/detail.html', contexto)
 
