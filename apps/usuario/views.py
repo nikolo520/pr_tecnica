@@ -2,7 +2,7 @@ from django import forms
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from apps.usuario.forms import UsuarioForm
-from apps.usuario.models import Usuario
+from apps.usuario.models import User
 from apps.venta.models import Venta
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -32,7 +32,7 @@ def index(request):
 
 @login_required
 def detail(request,id_usuario):
-    obj = Usuario.objects.get(id=id_usuario)
+    obj = User.objects.get(id=id_usuario)
     if obj.cargo == 'Ejecutivo_Comercial' or None:
         rel_objs = Venta.objects.filter(vendedor=obj)
         flag = False
@@ -46,7 +46,7 @@ def detail(request,id_usuario):
 
 @login_required
 def next(request,usuario):
-    obj = Usuario.objects.get(usuario=usuario)
+    obj = User.objects.get(usuario=usuario)
     return redirect('/usuario/detail/' + str(obj.id))
 
 @login_required

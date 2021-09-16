@@ -131,3 +131,5 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 LOGIN_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+AUTH_USER_MODEL = 'usuario.user'
