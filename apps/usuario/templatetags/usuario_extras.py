@@ -2,6 +2,13 @@ from django import template
 
 register = template.Library()
 
+@register.filter(name='is_none')
+def is_none(value):
+    if value is None:
+        return ''
+    else:
+        return value
+        
 @register.filter(name='total_ventas')
 def total_ventas(vendedor_id):
     from apps.venta.models import Venta
