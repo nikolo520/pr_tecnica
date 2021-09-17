@@ -1,0 +1,10 @@
+.profile_photo {
+    max-height: 10rem;
+    max-width: 10rem;
+}
+
+.fix-bottom {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
