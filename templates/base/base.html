@@ -31,23 +31,23 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLinkClientes" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Clientes
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLinkEPS" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        EPS
                       </a>
-                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLinkClientes">
-                        <li><a class="dropdown-item" href="">Crear</a></li>
-                        <li><a class="dropdown-item" href="">Consultar</a></li>
+                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLinkEPS">
+                        <li><a class="dropdown-item" href="{% url 'create_eps' %}" disabled>Crear</a></li>
+                        <li><a class="dropdown-item" href="{% url 'index_eps' %}">Consultar</a></li>
                       </ul>
                     </li>
                   </ul>
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLinkVentas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Ventas
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLinkRoles" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Roles
                       </a>
-                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLinkVentas">
-                        <li><a class="dropdown-item" href="">Crear</a></li>
-                        <li><a class="dropdown-item" href="">Consultar</a></li>
+                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLinkRoles">
+                        <li><a class="dropdown-item" href="{% url 'create_rol' %}"disabled>Crear</a></li>
+                        <li><a class="dropdown-item" href="{% url 'index_rol' %}">Consultar</a></li>
                       </ul>
                     </li>
                   </ul>

@@ -2,7 +2,7 @@ from django import forms
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from apps.usuario.forms import UsuarioForm
-from apps.usuario.models import User
+from apps.eps.models import Eps
 #from apps.venta.models import Venta
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -14,22 +14,21 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    usuarios = User.objects.all()
-    result = []
-    contexto = {'usuarios' : usuarios}
-    return render(request,'usuario/index.html', contexto)
+    epss = Eps.objects.all()
+    contexto = {'epss' : epss}
+    return render(request,'eps/index.html', contexto)
 
 @login_required
-def detail(request,id_usuario):
-    obj = User.objects.get(id=id_usuario)
-    contexto = {'usuario':obj}
-    return render(request,'usuario/detail.html', contexto)
+def detail(request,id_eps):
+    obj = Eps.objects.get(id=id_eps)
+    contexto = {'eps':obj}
+    return render(request,'eps/detail.html', contexto)
 
 
 @login_required
-def next(request,usuario):
-    obj = User.objects.get(usuario=usuario)
-    return redirect('/usuario/detail/' + str(obj.id))
+def next(request,eps):
+    obj = Eps.objects.get(eps=eps)
+    return redirect('/eps/detail/' + str(obj.id))
 
 @login_required
 def create(request):
@@ -37,17 +36,17 @@ def create(request):
         form = UsuarioForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('usuario:index')
+        return redirect('eps:index')
     else:
         form = UsuarioForm()
-    return render(request,'usuario/create.html',{'form':form})
+    return render(request,'eps/create.html',{'form':form})
 
 @login_required
 def edit(request):
-    return render(request,'usuario/detail.html')
+    return render(request,'eps/detail.html')
 
 @login_required
 def delete(request):
-    return render(request,'usuario/detail.html')
+    return render(request,'eps/detail.html')
 
 # Create your views here.

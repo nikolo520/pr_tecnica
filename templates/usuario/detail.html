@@ -10,100 +10,29 @@
       <div class="col-md-6 border container p-4 mb-3">
         <h4><small class="text-muted">Perfil de Usuario</small></h4>
         <h2>{{ usuario }}</h2>
-        <p>{{ usuario.numero_empleado | is_none }}</p>
         <div class="row">
-          <div class="form-group col-md-3">
-            <img src="{% static 'images/M1.jpg' %}" class="rounded mx-auto d-block profile_photo" alt="Perfil">
-          </div>
-          <div class="form-group col-md-9">
+          <div class="form-group col-md-6">
             <ul class="list-group">
-              <li class="list-group-item">{{ usuario.cargo | is_none }}</li>
-              <li class="list-group-item">{{ usuario.zona | is_none }}</li>
-              <li class="list-group-item">{{ usuario.municipio }},{{ usuario.departamento | is_none }}</li>
-              <li class="list-group-item">$ {{ usuario.id | total_ventas }}</li>
+              <li class="list-group-item"><strong>Documento: </strong> {{ usuario.documento | is_none }}</li>
+              <li class="list-group-item"><strong>Eps: </strong> {{ usuario.eps | is_none }}</li>
+              <li class="list-group-item"><strong>Rol: </strong> {{ usuario.rol }}</li>
+              <li class="list-group-item"><strong>Edad: </strong> {{ usuario.fecha_nacimiento | calcular_edad }}</li>
             </ul>
           </div>
         </div>
         <br>
         <div class="row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-3">
             <label for="telefono"><strong>Teléfono:</strong></label>
             <input type="text" class="form-control-plaintext" id="telefono" value="{{ usuario.telefono | is_none }}" readonly>
           </div>
-          <div class="form-group col-md-6">
-            <label for="email"><strong>Correo Electrónico:</strong></label>
-            <input type="text" class="form-control-plaintext" id="email" value="{{ usuario.email | is_none }}" readonly>
+          <div class="form-group col-md-3">
+            <label for="email"><strong>Genero:</strong></label>
+            <input type="text" class="form-control-plaintext" id="genero" value="{{ usuario.genero | is_none }}" readonly>
           </div>
         </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-              <label for="ingreso"><strong>Fecha de Ingreso:</strong></label>
-              <input type="text" class="form-control-plaintext" id="ingreso" value="{{ usuario.fecha_ingreso | is_none }}" readonly>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="jefe"><strong>Jefe:</strong></label>
-              {% if usuario.jefe %}
-                <a class="form-control-plaintext" href="{% url 'detail' usuario.jefe.id %}">{{ usuario.jefe | is_none }}</a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-
-        {% if flag %}
-          <div class="col-md-6 border container p-4 mb-3">
-            <h2>Subalternos</h2>
-            {% if rel_objs  %}
-              <table class="table table-bordered mt-2">
-                <thead>
-                    <td>Usuario</td>
-                    <td>Zona</td>
-                    <td>Municipio</td>
-                    <td>Total Ventas</td>
-                </thead>
-                <tbody>
-              {% for sub in rel_objs %}
-                  <tr>
-                    <td><a href="{% url 'detail' sub.id %}">{{ sub }}</a></td>
-                    <td>{{ sub.zona }}</td>
-                    <td>{{ sub.municipio }}</td>
-                    <td>$ {{ sub.id | total_ventas }}</td>
-                  </tr>
-              {% endfor %}
-              </tbody>
-              </table>
-            {% else %}
-              <h4>Este usuario no tiene subalterno.</h4>
-            {% endif %}
-          </div>
-        {% else %}
-          <div class="col-md-6 border container p-4 mb-3">
-            <h2>Ventas</h2>
-            {% if rel_objs  %}
-              <table class="table table-bordered mt-2">
-                <thead>
-                    <td>Cliente</td>
-                    <td>Servicio</td>
-                    <td>Fecha</td>
-                    <td>Valor</td>
-                </thead>
-                <tbody>
-              {% for venta in rel_objs %}
-                  <tr>
-                    <td>{{ venta.cliente.nombres }}</td>
-                    <td>{{ venta.servicio }}</td>
-                    <td>{{ venta.fecha }}</td>
-                    <td>$ {{ venta.valor }}</td>
-                  </tr>
-              {% endfor %}
-              </tbody>
-              </table>
-            {% else %}
-              <h4>NO hay registro de ventas para el usuario.</h4>
-            {% endif %}
-        </div>
-        {% endif %}
-        
+      </div>
     </div>
 {% endblock %}
-
-   
+{% block footer %}
+{% endblock %}

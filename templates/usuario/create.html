@@ -5,42 +5,46 @@
     <h4>Usuario {{ usuario.nombres }}</h4>
 {% endblock %}
 {% block content %}
+    
+{% for field in form %}
+{% if field.widget_type == 'checkbox' %}
+    # render one way
+{% else %}
+    # render another way
+{% endif %}
+{% endfor %}
     <div class="row">
         <div class="col-6">
-            <h2>Fomulario</h2>
+            <h2>Crear Usuario</h2>
             <form>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputEmail4">Usuario</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Usuario" value="{{ usuario.usuario }}" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="inputPassword4">Nombre</label>
-                    <input type="text" class="form-control" id="inputPassword4" placeholder="Nombres" value="{{ usuario.nombres }}" readonly>
+                <div class="form">
+                  <div class="form-group col-md-12">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nomre" placeholder="Nombre Completo" >
                   </div>
                 </div>
-                <div class="form-row">
+                <div class="form">
                     <div class="form-group col-md-6">
-                      <label for="inputEmail4">Primer Apellido</label>
-                      <input type="text" class="form-control" id="inputEmail4" placeholder="Email" value="{{ usuario.apellido1 }}" readonly>
+                      <label for="documento">Documento</label>
+                      <input type="text" class="form-control" id="documento" placeholder="Documento" >
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="inputPassword4">Segundo Apellido</label>
-                      <input type="text" class="form-control" id="inputPassword4" placeholder="Password" value="{{ usuario.apellido2 }}" readonly>
+                      <label for="inputPassword4">Contraseña</label>
+                      <input type="text" class="form-control" id="inputPassword4" placeholder="Password" value="{{ usuario.apellido2 }}" >
                     </div>
                   </div>
                 <div class="form-group">
                   <label for="inputAddress">Address</label>
-                  <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" readonly>
+                  <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" >
                 </div>
                 <div class="form-group">
                   <label for="inputAddress2">Address 2</label>
-                  <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" readonly>
+                  <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" >
                 </div>
-                <div class="form-row">
+                <div class="form-group">
                   <div class="form-group col-md-6">
                     <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity" readonly>
+                    <input type="text" class="form-control" id="inputCity" >
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputState">State</label>
@@ -62,11 +66,8 @@
                     </label>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button id="crear_usuario" class="btn btn-primary">Sign in</button>
               </form>
-        </div>
-        <div class="col-6">
-            <h2>Subalternos</h2>
         </div>
     </div>
 {% endblock %}

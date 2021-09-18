@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class VentaConfig(AppConfig):
+class EpsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.venta'
+    name = 'apps.eps'

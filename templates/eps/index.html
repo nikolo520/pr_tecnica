@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% load usuario_extras %}
+{% block title %}  Eps {% endblock %}
+{% block header %}
+    <br><h4>Eps</h4><br>
+{% endblock %}
+{% block content %}
+    <h1 class="display-6 mt-4">Lista de Eps en el sistema</h1>
+    <table class="table table-bordered mt-4">
+        <thead>
+            <td>Nombre</td>
+            <td>Descripción</td>
+            <td>Direccion</td>
+            <td>Telefono</td>
+        </thead>
+        <tbody>
+            {% if epss %}
+                {% for eps in epss %}
+                <tr>
+                    <td><a href="#"> {{ eps | is_none}}</a></td>
+                    <td>{{ eps.descripcion | is_none}} </td>
+                    <td>{{ eps.direccion | is_none}} </td>
+                    <td>{{ eps.telefono | is_none}}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+        {% else %}
+            <h1>No hay eps registradas</h1>
+        {% endif %}
+    </table>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+   

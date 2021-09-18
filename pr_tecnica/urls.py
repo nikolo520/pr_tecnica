@@ -22,6 +22,6 @@ urlpatterns = [
     path('logout', LogoutView.as_view(),name="logout"),
     path('admin/', admin.site.urls),
     path('usuario/', include('apps.usuario.urls')),
-    path('cliente/', include('apps.cliente.urls')),
-    path('venta/', include('apps.venta.urls')),
+    path('eps/', include('apps.eps.urls')),
+    path('rol/', include('apps.rol.urls')),
 ]

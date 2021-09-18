@@ -2,49 +2,42 @@ from django import forms
 from django.forms import widgets
 
 from apps.usuario.models import User
-
-class UsuarioForm(forms.ModelForm):
+from apps.rol.models import Rol
+from apps.eps.models import Eps
+class UsuarioForm(forms.Form):
     class Meta:
-        modal = User
+        model = User
 
         fields = [
-            'username',
-            'usuario',
-            'nombre',
-            'zona',
-            'ciudad',
-            'jefe',
-            'cargo',
-            'email',
+            'documento',
+            'nombres',
+            'genero',
+            'eps',
+            'rol',
+            'telefono',
             'fecha_nacimiento',
             'fecha_ingreso',
-            'identificacion',
+
         ]
 
         labels = {
-            'username':'usuario',
-            'usuario':'U',
-            'nombre':'Nombre',
-            'zona':'Zona',
-            'ciudad':'Ciudad',
-            'jefe':'Jefe',
-            'cargo':'Cargo',
-            'email':'Email',
+            'documento':'Documento',
+            'nombres':'Nombre Completo',
+            'genero':'Género',
+            'eps':'Eps',
+            'rol':'Rol',
+            'telefono':'Teléfono',
             'fecha_nacimiento':'Fecha de Nacimiento',
             'fecha_ingreso':'Fecha de Ingreso',
-            'identificacion':'Identificacion',
         }
 
         widgets = {
-            'username': forms.TextInput(attrs={'class':'form-control'}),
-            'usuario': forms.TextInput(attrs={'class':'form-control'}),
-            'nombre': forms.TextInput(attrs={'class':'form-control'}),
-            'zona': forms.TextInput(attrs={'class':'form-control'}),
-            'ciudad': forms.TextInput(attrs={'class':'form-control'}),
-            'jefe': forms.Select(attrs={'class':'form-control'}),
-            'cargo': forms.TextInput(attrs={'class':'form-control'}),
-            'email': forms.TextInput(attrs={'class':'form-control'}),
+            'documento': forms.TextInput(attrs={'class':'form-control'}),
+            'nombres': forms.TextInput(attrs={'class':'form-control'}),
+            'genero': forms.Select(attrs={'class':'form-control'}),
+            'eps': forms.ModelChoiceField(queryset=Eps.objects.all(), to_field_name="eps"),
+            'rol': forms.ModelChoiceField(queryset=Rol.objects.all(), to_field_name="rol"),
+            'telefono': forms.Select(attrs={'class':'form-control'}),
             'fecha_nacimiento': forms.TextInput(attrs={'class':'form-control'}),
             'fecha_ingreso': forms.TextInput(attrs={'class':'form-control'}),
-            'identificacion': forms.TextInput(attrs={'class':'form-control'}),
         }

@@ -6,5 +6,4 @@ urlpatterns = [
     path('', login_required(index),name='index'),
     path('detail/<id_usuario>/', login_required(detail),name='detail'),
     path('create/', login_required(create),name='create'),
-    path('next/<usuario>/', login_required(next),name='next'),
 ]

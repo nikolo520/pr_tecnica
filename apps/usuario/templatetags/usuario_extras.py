@@ -9,18 +9,24 @@ def is_none(value):
     else:
         return value
         
-@register.filter(name='total_ventas')
-def total_ventas(vendedor_id):
-    from apps.venta.models import Venta
+@register.filter(name='calcular_edad')
+def calcular_edad(fecha_nacimiento):
+    from datetime import date
+    hoy = date.today()
     try:
-
-        ventas = Venta.objects.filter(vendedor_id = vendedor_id)
-        total = 0
-        
-        for venta in ventas:
-            if venta.valor > 0:
-                total += venta.valor
+        edad = hoy.year - fecha_nacimiento.year
+        return edad
     except Exception as e:
-        print(e)
-        total = 0
-    return total
+        print("[Error]",e)
+        return ''
+
+@register.filter(name='alert')
+def alert(fecha_nacimiento):
+    edad = calcular_edad(fecha_nacimiento)
+    print(edad)
+    if edad != '':
+        if edad < 18 :
+            return 'menor'
+        if edad > 50 :
+            return 'mayor'
+    return ' nada'

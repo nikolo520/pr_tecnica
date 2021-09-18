@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3$4ux)jp16ez@9f9w1r@&ux@+7$_mjg-$no66x$@&z^f_ndfp*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = DEBUG_CONF
 
-ALLOWED_HOSTS = ['mysterious-beyond-96057.herokuapp.com','localhost','127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.usuario',
-    'apps.venta',
-    'apps.cliente',
+    'apps.eps',
+    'apps.rol',
 ]
 
 MIDDLEWARE = [
@@ -132,4 +132,4 @@ LOGIN_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = 'usuario.user'
+#AUTH_USER_MODEL = 'usuario.user'

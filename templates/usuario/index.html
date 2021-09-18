@@ -6,33 +6,39 @@
 {% endblock %}
 {% block content %}
     <h1 class="display-6 mt-4">Lista de Usuarios en el sistema</h1>
-    <table class="table table-bordered mt-4">
+    <table class="table table-bordered mt-4 tabla_azul">
         <thead>
-            <td>N° Empleado</td>
-            <td>Nombre Completo</td>
-            <td>Zona</td>
-            <td>Cargo</td>
-            <td>Activo</td>
+            <th>Nombre Completo</th>
+            <th>Documento</th>
+            <th>Genero</th>
+            <th>Edad</th>
+            <th>Telefono</th>
+            <th>Eps</th>
+            <th>Rol</th>
+            <th>Acción</th>
         </thead>
         <tbody>
             {% if usuarios%}
                 {% for usuario in usuarios %}
-                <tr>
-                    <td><a href="{% url 'detail' usuario.id %}"> {{ usuario.usuario | is_none}}</a></td>
-                    <td>{{ usuario.nombre_completo | is_none}}</td>
-                    <td>{{ usuario.zona | is_none}}</td>
-                    <td>{{ usuario.cargo | is_none}}</td>
+                <tr class="{{ usuario.fecha_nacimiento | alert }}">
+                    <th><a href="{% url 'detail' usuario.id %}"> {{ usuario | is_none}}</a></th>
+                    <td>{{ usuario.documento | is_none}} </td>
+                    <td>{{ usuario.genero | is_none}} </td>
+                    <td>{{ usuario.fecha_nacimiento | calcular_edad }}</td>
+                    <td>{{ usuario.telefono | is_none}}</td>
+                    <td>{{ usuario.eps | is_none}}</td>
+                    <td>{{ usuario.rol | is_none}}</td>
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" checked="{{ usuario.activo }}" id="flexCheckDefault" disabled>
+                            <button type="button" disabled class="btn btn-secondary btn-sm">Editar</button>
                         </div>
                     </td>
                 </tr>
                 {% endfor %}
-            {% else %}
-                <h1>No hay usuarios registrados</h1>
-            {% endif %}
         </tbody>
+        {% else %}
+            <h1>No hay usuarios registrados</h1>
+        {% endif %}
     </table>
 {% endblock %}
 
